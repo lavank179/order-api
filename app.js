@@ -6,6 +6,10 @@ app.use(cors()); // using cors to Allow or Enable all the Cross-Origin requests 
 app.use(express.json()); // to parse request body json data
 
 
+// importing the orderCalculation function from calculate order file.
+const order_calculate = require('./orderCalculate');
+
+
 // defining the hostname and port number.
 const hostname = 'localhost';
 const port = 3001;
@@ -14,11 +18,23 @@ const port = 3001;
 
 
 // app server default response for index.
-app.get('/', (res) => {
+app.get('/', (req, res) => {
 
     // sending the appropriate responses.
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify("Welcome to Order Calculation"));
+});
+
+
+
+// app server usage, routing and response structuring for Total Order Calculation.
+app.get('/order-total', async (req, res) => {
+    // calling the Total order Calculate method.
+    let responseText = await order_calculate.Order_Total(req.body);
+
+
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(responseText));
 });
 
 
