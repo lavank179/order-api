@@ -1,3 +1,44 @@
+// method which verifies that all the order details are in the correct type-format.
+function checkTypeFormat(order, error, successCheck) {
+
+    if (!("distance" in order)) {
+        successCheck = false;
+        error += ` Delivery Distance value key or value is not provided!-----  `;
+    } else {
+        if ((typeof order.distance) == 'number') {
+            if (order.distance < 0 || order.distance > 500000) {
+                successCheck = false;
+                error += ` distance value should be in the range of (0 - 500000) both inclusive.-----  `;
+            }
+        }
+    }
+
+    if ((typeof order.order_items[0].quantity) != 'number' ||
+        (typeof order.order_items[0].price) != 'number' ||
+        (typeof order.distance) != 'number'
+    ) {
+        successCheck = false;
+        error += ` Some of the Inner Key's Values are not in the Correct Data-type and format-----  `;
+    }
+
+
+    if ('offer' in order) {
+        if ((typeof order.offer.offer_type) != 'string' ||
+            (typeof order.offer.offer_val) != 'number') {
+            successCheck = false;
+            error += ` Offer Values are not in the Correct Data-type and format----  `;
+        }
+    }
+
+    // returning the original error and success varibles so that it can be used in the main function.
+    return [error, successCheck];
+}
+// --------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
 // method to calculate the delivery using - default Delivery-Distance Slab.
 function calculateDelivery(distance) {
 
@@ -33,13 +74,22 @@ function calculateDelivery(distance) {
 
 
 // Total order Calculation Main method.
-const Order_Total = async(order) => {
+const OrderTotal = (order) => {
+
+    // Promise will handle the returning elements very efficiently and with assurance using resolve and reject.
+    return new Promise(async (resolve, reject) => {
 
         // base Variables init and definition to store respective Cost Values.
         let orderValue = 0;
         let itemTotal = 0;
         let deliveryFee = 0;
         let discountAmount = 0;
+        let successCheck = true;
+        let error = ``;
+
+
+        // verifying whether all the internal Order items and keys are in the correct format and data type using Custom function.
+        [error, successCheck] = await checkTypeFormat(order, error, successCheck);
 
 
         // iterate to the items list and multiply and add the every item price value with their quantities.
@@ -80,9 +130,16 @@ const Order_Total = async(order) => {
             orderValue = orderValue - discountAmount;
         }
 
-        return { 'order_total': orderValue }
+
+        // Returning the final calculated 'OrderValue' Cost in the JSON format.
+        if (successCheck) {
+            resolve({ 'order_total': orderValue });
+        } else {
+            reject(error);
+        }
+    });
 };
 
 
 // exporting the Order Total function, so that it can be accessed in the other files.
-exports.Order_Total = Order_Total;
+exports.Order_Total = OrderTotal;

@@ -3,7 +3,7 @@ const cors = require('cors'); // importing cors library.
 
 const app = express(); // creating express object - app.
 app.use(cors()); // using cors to Allow or Enable all the Cross-Origin requests or endpoints.
-app.use(express.json()); // to parse request body json data
+app.use(express.json()); // to parse request body's json data
 
 
 // importing the orderCalculation function from calculate order file.
@@ -29,12 +29,20 @@ app.get('/', (req, res) => {
 
 // app server usage, routing and response structuring for Total Order Calculation.
 app.get('/order-total', async (req, res) => {
-    // calling the Total order Calculate method.
-    let responseText = await order_calculate.Order_Total(req.body);
+
+    try {
+        // calling the Total order Calculate method.
+        let responseText = await order_calculate.Order_Total(req.body);
 
 
-    res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(responseText));
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(responseText));
+    } catch (error) {
+
+        // Sending Error response in an understandable format.
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(error));
+    }
 });
 
 
