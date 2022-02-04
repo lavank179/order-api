@@ -14,7 +14,7 @@ git clone https://github.com/lavank179/order-api.git
 ```
 - Install dependencies
 ```
-cd order_api
+cd order-api
 npm install
 ```
 - Build and run the project
