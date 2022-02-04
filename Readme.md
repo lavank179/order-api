@@ -37,9 +37,7 @@ npm start
 - *orderCalculate.js*     - contains following methods
 
       `OrderTotal`        - total order cost calculation
-
       `calculateDelivery` - delivery cost checking
-
       `checkTypeFormat`   - verifying whether any type or format errors exists.
 
 
