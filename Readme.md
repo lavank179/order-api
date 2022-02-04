@@ -10,11 +10,11 @@ This is an API for calculation Total Order Cost with the given Order details and
 # Getting started
 - Clone the repository
 ```
-git clone <>
+git clone https://github.com/lavank179/order-api.git
 ```
 - Install dependencies
 ```
-cd <order_api>
+cd order_api
 npm install
 ```
 - Build and run the project
