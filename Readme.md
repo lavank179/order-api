@@ -35,6 +35,7 @@ npm start
 - *app.js*                - root file where application and server starts.
 
 - *orderCalculate.js*     - contains following methods
+
       `OrderTotal`        - total order cost calculation
       `calculateDelivery` - delivery cost checking
       `checkTypeFormat`   - verifying whether any type or format errors exists.
