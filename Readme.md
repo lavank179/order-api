@@ -1,7 +1,7 @@
 # NodeJS Backend API for Total Order Calculation
 
 ## Description 
-This is an API for calculation Total Order Cost with the given Order details and it is built using NodeJS and Express by LAVAN KUMAR CH.
+This is an API for calculation of Total Order Cost with the given Order details and it is built using NodeJS and Express by LAVAN KUMAR CH.
 
 # Pre-requisites
 - Install [Node.js](https://nodejs.org/en/) version 14.0.0 and above
