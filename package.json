@@ -1,0 +1,24 @@
+{
+  "name": "order-api",
+  "version": "1.0.0",
+  "description": "A Backend API for eSamudaay assignment. This is an NodeJS app created by lavan kumar ch - 18113190",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lavank179/order-api.git"
+  },
+  "author": "LAVAN KUMAR CH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lavank179/order-api/issues"
+  },
+  "homepage": "https://github.com/lavank179/order-api#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2"
+  }
+}
