@@ -23,8 +23,7 @@ function checkTypeFormat(order, error, successCheck) {
 
 
     if ('offer' in order) {
-        if ((typeof order.offer.offer_type) != 'string' ||
-            (typeof order.offer.offer_val) != 'number') {
+        if ((typeof order.offer.offer_type) != 'string') {
             successCheck = false;
             error += ` Offer Values are not in the Correct Data-type and format----  `;
         }
